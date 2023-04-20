@@ -1,5 +1,5 @@
 Username: admin
 Password: admin
 
-Username: Kolya
-Password: Kolya
+Username: Kolyaska
+Password: Aleksandrovich
