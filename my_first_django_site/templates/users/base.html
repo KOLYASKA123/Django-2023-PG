@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<ul class="list-group">
+    <li class="list-group-item">
+        User: {{ user }}
+    </li>
+    <li class="list-group-item">
+        <a href="{% url 'home' %}">Home</a>
+    </li>
+</ul>
+{% block content_user %}
+{% endblock content_user %}
+{% endblock content %}

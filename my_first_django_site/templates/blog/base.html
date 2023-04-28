@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% comment %} <link href="{% static "css/blog.css" %}" rel="stylesheet"> {% endcomment %}
+</head>
+<body>
+    <h1>Django site</h1>
+    <p><a href="{% url 'home' %}">Profile</a></p>
+    <p><a href="{% url 'blog:post_list' %}">Main page<a></p>
+    <p><a href="{% url 'blog:my_blogs' %}">My blogs<a></p>
+    <p><a href="{% url 'blog:create_post' %}">New post<a></p>
+    {% block content %}
+    {% endblock content %}
+</body>
+</html>

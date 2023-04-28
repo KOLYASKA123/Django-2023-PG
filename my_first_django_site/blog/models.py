@@ -7,6 +7,15 @@ from taggit.managers import TaggableManager
 from django.conf import settings
 
 # Create your models here.
+class Category(models.Model):
+    
+    name = models.CharField(max_length=100)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='blog_categories', on_delete=models.CASCADE, null=True, blank=True)
+    
+    def __str__(self):
+        
+        return self.name
+
 class Post(models.Model):
 
     class PostStatus(models.TextChoices):
@@ -19,10 +28,12 @@ class Post(models.Model):
     slug = models.SlugField(max_length=250)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='blog_posts', on_delete=models.CASCADE)
     body = models.TextField()
+    category = models.ForeignKey('Category', null=True, on_delete=models.SET_NULL)
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=PostStatus.choices, default=PostStatus.DRAFT)
+    image = models.ImageField(upload_to='blog/', null=True, default=None)
 
     class Meta:
 
@@ -34,13 +45,7 @@ class Post(models.Model):
     
     def get_absolute_url(self):
 
-        return reverse(
-            'blog:post_detail',
-            args=[
-                self.publish.year,
-                self.publish.strftime('%m'),
-                self.publish.strftime('%d'),
-                self.slug])
+        return reverse('blog:post_detail', args=[str(self.id)])
 
 class Comment(models.Model):
     

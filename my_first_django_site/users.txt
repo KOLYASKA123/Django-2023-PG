@@ -3,3 +3,6 @@ Password: admin
 
 Username: Kolyaska
 Password: Aleksandrovich
+
+Username: User
+Password: JustUser

@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<h1>Здесь вы можете создать новую категорию (блог), если необходимо</h1>
+<form action="{% url 'blog:create_post' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ category_form.as_p }}
+    <button type="submit" name="create_category">Создать</button>
+</form>
+<h1>Новый пост</h1>
+<form action="{% url 'blog:create_post' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ post_form.as_p }}
+    <button type="submit" name="create_post">Создать</button>
+</form>
+{% endblock content %}

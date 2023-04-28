@@ -70,3 +70,70 @@ body {
 .posts .postcard p:last-child {
   margin-top: 8px;
 }
+
+/* Обертка для пагинации */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Кнопки переключения между страницами */
+.pagination a {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  color: #333;
+  text-decoration: none;
+  margin: 0 5px;
+  transition: background-color 0.3s ease;
+}
+
+/* Кнопки переключения между страницами при наведении */
+.pagination a:hover {
+  background-color: #ddd;
+}
+
+/* Текущая страница */
+.pagination .current {
+  padding: 10px 15px;
+  background-color: #333;
+  color: #fff;
+  margin: 0 5px;
+}
+
+/* Кнопки переключения между страницами при отсутствии предыдущей или следующей страницы */
+.pagination .step-links a.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.pagination {
+  /* Добавляем отступы и центрируем пагинацию по горизонтали */
+  margin-top: 20px;
+  text-align: center;
+}
+
+.step-links a {
+  /* Добавляем стили для кнопок */
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #f8f8f8;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-radius: 25px; /* Добавляем закругление углов */
+  margin: 0 5px; /* Добавляем отступы между кнопками */
+  margin-bottom: 25px;
+}
+
+.step-links .current {
+  /* Стили для текущей страницы */
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 25px; /* Добавляем закругление углов */
+}

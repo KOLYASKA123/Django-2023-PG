@@ -1,0 +1,37 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <h1>{{ blog.name }}</h1>
+    <div class="posts">
+        {% if  tag %}
+            <h2>Posts tagget with "{{ tag.name }}"</h2>
+        {% endif %}
+        {% for post in posts %}
+        <div class="postcard">
+            <h2>
+                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                <p class="tags">
+                    Tags:
+                    {% for tag in post.tags.all %}
+                        <a href="{% url "blog:post_list_by_tag" tag.slug %}">
+                            {{ tag.name }}
+                        </a>
+                        {% comment %} {% if not forloop.last %}, {% endif %} {% endcomment %}
+                    {% endfor %}
+                </p>
+            </h2>
+            <p class="date">
+                Published {{ post.publish }} by {{ post.author }}
+            </p>
+            {% if post.image %} {% comment %} .url {% endcomment %}
+            <img src="{{ post.image.url }}" alt="Изображение">
+            {% else %}
+            <p>Изображение отсутствует</p>
+            {% endif %}
+            {{ post.body|truncatewords:30|linebreaks }}
+        </div>
+        {% empty %}
+        <p>В этом блоге ещё нет постов.</p>
+        {% endfor %}
+    </div>
+    {% include "blog/pagination.html" with page=posts %}
+{% endblock %}

@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'users/base.html' %}
+{% block content_user %}
     <h1>Login</h1>
     <hr>
 
@@ -13,4 +13,4 @@
     <button type="submit" class="btn btn-success">submit</button>
     </form>
     <a href="{% url 'password_reset' %}">Forgot password?</a>
-{% endblock content %}
+{% endblock content_user %}

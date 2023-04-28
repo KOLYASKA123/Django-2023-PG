@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'users/base.html' %}
 
-{% block content %}
+{% block content_user %}
     <h1>Register</h1>
     <hr>
 
@@ -9,4 +9,4 @@
             {% csrf_token %}
         <button type="submit" class="btn btn-success">submit</button>
     </form>
-{% endblock %}
+{% endblock content_user %}
