@@ -65,6 +65,7 @@ def post_list(request, tag_slug=None):
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     comments = post.comments.filter(active=True)
+    am_I_the_author = request.user == post.author
 
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
@@ -79,7 +80,7 @@ def post_detail(request, post_id):
     similar_posts = Post.objects.filter(status=Post.PostStatus.PUBLISHED).exclude(id=post.id)
     similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by('-same_tags', '-publish')[:4]
 
-    return render(request, 'blog/post/detail.html', {'post': post, 'comments': comments, 'comment_form': comment_form, 'similar_posts': similar_posts})
+    return render(request, 'blog/post/detail.html', {'post': post, 'comments': comments, 'comment_form': comment_form, 'similar_posts': similar_posts, 'am_I_the_author': am_I_the_author})
 
 def post_share(request, post_id):
     
